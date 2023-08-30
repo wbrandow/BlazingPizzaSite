@@ -6,9 +6,14 @@
 @inject OrderState OrderState
 @inject IJSRuntime JavaScript
 
-<div class="main">
-   
+<Modal Title="My first Modal dialog" Show=@Show 
+    OnCancel="SetShowToFalse" OnConfirm="SetShowToFalse">
+    <p>
+        This is my first modal dialog
+    </p>
+</Modal>
 
+<div class="main">
    <ul class="pizza-cards">
         @if (specials != null) {
             @foreach (var special in specials) {
@@ -65,7 +70,9 @@
 		
 @code {
     List<PizzaSpecial> specials = new();
-    Order order => OrderState.Order;    
+    Order order => OrderState.Order;  
+
+    bool Show = true; 
 
     protected override async Task OnInitializedAsync() {
         specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
@@ -86,5 +93,9 @@
         if (await JavaScript.InvokeAsync<bool> ("swal", messageParams)) {
             OrderState.RemoveConfiguredPizza(removePizza);
         }
+    }
+
+    public void SetShowToFalse() {
+        Show = false;
     }
 }        
