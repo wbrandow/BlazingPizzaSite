@@ -53,5 +53,9 @@ jobs:
         with:
           app-name: 'BillsBlazingPizzaSite'
           slot-name: 'Production'
+<<<<<<< HEAD
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_37B10696FA5643F1B4957270DED84231 }}
+=======
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C2A06A3E27614FEA82246E7C41442FEC }}
+>>>>>>> 0c77738 (moved azure config yaml file)
           package: .
